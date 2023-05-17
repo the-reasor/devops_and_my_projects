@@ -55,6 +55,35 @@ sudo parted /dev/sdb
 >0%
 >100%
 
+# For NTFS and windows portable large drives see section marked windows compat
+
+# Now we need to create a mount point for the drive
+sudo mkdir /mnt/mountpoint_name
+
+# Mount it! :D
+sudo mount /dev/sdb /mnt/mountpoint_name
+
+# Add the drive to /etc/fstab (file system table) so it is mounted at boot!
+# Lets back it up first.
+sudo cp /etc/fstab /etc/fstab.old
+
+# Get the UUID
+sudo blkid
+
+#copy the UUID then edit /etc/fstab
+sudo nano /etc/fstab
+
+# Paste the UUID
+UUID=your_coppied_UUID /mount/point ext4 defaults,nofail 0 2
+
+# Save and exit. Ctrl + s then Ctrl + x
+
+# unmount then automount so it is mounted by the system
+sudo umount /mnt/mountpoint_name
+sudo mount -a
+
+#========windows compat=========
+
 # This will create a GPT partitioned drive with a primary partition and an ext4 filesystem that takes up the entire drive.
 # Keep in mind that this kind of filesystem is not compatable with windows so if you are working on a portable drive or USB
 # you will need to use something like NTFS or exFAT. NTFS is journaling and does not allow for using the whole drive

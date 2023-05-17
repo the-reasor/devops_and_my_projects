@@ -55,7 +55,14 @@ sudo parted /dev/sdb
 >0%
 >100%
 
-# For NTFS and windows portable large drives see section marked windows compat
+# In the previous step we told the system that the drive partition is intended for use with ext4 filesystem.
+# But the next step actually applies that filesystem to the partition.
+# The parted command also created a new partition. In this case sdb1.
+# You can check again with lsblk
+
+sudo mkfs.ext4 /dev/sdb1
+
+# For NTFS and windows portable large drives see section marked windows compat.
 
 # Now we need to create a mount point for the drive
 sudo mkdir /mnt/mountpoint_name
@@ -83,12 +90,40 @@ sudo umount /mnt/mountpoint_name
 sudo mount -a
 
 #========windows compat=========
+#ext4 is not compatable with windows so here I will show you a few options.
+# FAT32 is kind of limited but has use in flash drives if you dont have files larger than 4GB.
+# exFAT is incredible but does not do journaling and is more difficult to recover from if the drive is damaged.
+# NTFS is easiest to recover if the drive is damaged and what you are most likely to see in windows
+# but needs an extra package to be installed to work on Linux.
 
-# This will create a GPT partitioned drive with a primary partition and an ext4 filesystem that takes up the entire drive.
-# Keep in mind that this kind of filesystem is not compatable with windows so if you are working on a portable drive or USB
-# you will need to use something like NTFS or exFAT. NTFS is journaling and does not allow for using the whole drive
-# but it can be used across different OSes with some work.
+
+# Run this to create a partition then select one of the following options
+parted -a optimal -s /dev/sdb mklabel gpt mkpart 'my_partition_name' 0% 100%
+
+# Find the newly created partition
+lsblk
+
+#pick a filesystem listed below and continue with that filesystem's instructions
+
+
+# FAT32 has a limit of 8TB for partitions and file size limit of 4GB
+
+# Assuming the partition name is sdb1
+# Why is it called vfat in this command? No clue. 
+sudo mkfs.vfat /dev/sdb1
+
+
+# Another option is exFAT (extended File Allocation Table) which has a theoretical partition size limit of 128 petabyte.
+sudo apt install exfat-utils
+sudo mkfs.exfat /dev/sdb1
+
 
 # If you want to use NTFS (New Technology File System) on linux use these commands to install support for it.
-sudo apt install -y ntfs-3g-dev
+sudo apt install -y ntfs-3g-dev fuse
+
+
+
+/dev/sdb1 /mnt/win ntfs-3g defaults 0 0
+
+
 

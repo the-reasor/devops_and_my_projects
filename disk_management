@@ -1,0 +1,65 @@
+# This guide will help you manage disks on your Ubuntu server.
+
+# Update the server
+# This lets the package manager see more packages than just the ones tracked out of the box.
+sudo apt update
+
+# If this is a fresh install it is best practice to also install the updates
+# This will upgrade the packages to the current version.
+sudo apt upgrade
+
+
+#===========Claiming full drive===========
+
+# Firstoff, if you are using ubuntu 20 or later you might find that your disk space has run out already.
+# This is caused by Ubuntu using only 100GB of your hard drive when installing unless told otherwise.
+# Lets check to see if this applies to you.
+lsblk
+
+# You should see ubuntu--vg-ubuntu--lv mounted as root '/' and containing only 100GB while the whole drive should have been used.
+# If not then you are good here!
+# If you see that Ubuntu did not use the whole drive you can extend the LVM by issueing this command.
+sudo lvextend -l +100%FREE /dev/mapper/ubuntu--vg-ubuntu--lv
+
+# Then resize the filesystem
+sudo resize2fs /dev/mapper/ubuntu--vg-ubuntu--lv
+
+
+#============Adding a new drive============
+
+# You may have added some disks to your machine after you have already installed the OS and you need to add them to the machine.
+# List the disks
+lsblk
+
+# You should see something like /dev/sdb or /dev/sdc at the bottom and see that on the right side they are not mounted.
+
+# !!!!!!WARNING!!!!!!
+# Always double check that your disk is not already used because these changes will erase data!
+# Usually /dev/sda is the system drive and is where you have the OS installed so do not change this drive unless you know what you are doing!
+# !!!!!!WARNING!!!!!!
+
+# Now that that is out of the way I am going to show you how to prepare the disk to be mounted.
+# I am going to use parted for this but be warned that parted writes changes immediately after hitting enter.
+
+# Install parted.
+sudo apt -y install parted
+
+# Tell parted which drive you want to work on.
+sudo parted /dev/sdb
+
+# For this guide we are going to use GPT (GUID Partition Table) because it allows partitions over 2TB. 
+# For lower than 2TB you could use LVM (Logical Volume Manager)
+>mklabel gpt
+>mkpart primary
+>ext4
+>0%
+>100%
+
+# This will create a GPT partitioned drive with a primary partition and an ext4 filesystem that takes up the entire drive.
+# Keep in mind that this kind of filesystem is not compatable with windows so if you are working on a portable drive or USB
+# you will need to use something like NTFS or exFAT. NTFS is journaling and does not allow for using the whole drive
+# but it can be used across different OSes with some work.
+
+# If you want to use NTFS (New Technology File System) on linux use these commands to install support for it.
+sudo apt install -y ntfs-3g-dev
+

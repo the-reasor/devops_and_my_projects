@@ -68,7 +68,14 @@ sudo mkfs.ext4 /dev/sdb1
 sudo mkdir /mnt/mountpoint_name
 
 # Mount it! :D
-sudo mount /dev/sdb /mnt/mountpoint_name
+sudo mount /dev/sdb1 /mnt/mountpoint_name
+
+# If you get an error like 
+#"wrong fs type, bad option, bad superblock on /dev/sdb, missing codepage or helper program, or other error."
+# then you likely used /dev/sdb instead of /dev/sdb(number)
+# Try running it again with the partition number you get from lsblk
+
+
 
 # Add the drive to /etc/fstab (file system table) so it is mounted at boot!
 # Lets back it up first.

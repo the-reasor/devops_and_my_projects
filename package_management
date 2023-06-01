@@ -1,0 +1,14 @@
+# using apt
+# install without being asked
+sudo apt -y install package_name
+
+# Sometimes you might get an error like:
+# "Waiting for cache lock: Could not get lock /var/lib/dpkg/lock-frontend. It is held by process 3504 (unattended-upgr)"
+# The error should say the Process ID (or PID), in this case 3504
+# and you can use that number to terminate the process.
+# Run this to kill the process
+sudo kill -9 process_id
+
+# NOTE: despite this error unattended upgrade is a good feature and helps keep your packages up to date
+# and less vulnerable without you having to actively update the packages yourself.
+

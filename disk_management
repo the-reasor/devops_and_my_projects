@@ -96,6 +96,15 @@ UUID=your_coppied_UUID /mount/point ext4 defaults,nofail 0 2
 sudo umount /mnt/mountpoint_name
 sudo mount -a
 
+# You might have permission issues when trying to use the drive so run the following
+# commands to find your username and grand yourself permissions to the drive.
+whoami
+
+# whoami should return your username but you should also see it as "username@hostname:~$"
+# Usernames should always be typed as all lowercase. I know, it bugs me too.
+
+sudo chown -R "username" /mnt/mountpoint_name
+
 #========windows compat=========
 #ext4 is not compatable with windows so here I will show you a few options.
 # FAT32 is kind of limited but has use in flash drives if you dont have files larger than 4GB.

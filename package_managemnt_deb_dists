@@ -1,3 +1,14 @@
+#To simplify things I have relabled this to deb dists, since I plan on documenting other distrobutions
+# and because Deb/Deb based operating systems have several package management solutions.
+# Most common examples of Deb systems are Debian, Ubuntu, Linux Mint and Raspbian.
+# but most lightweight and specific purpose OSes are built based on Debian.
+# Some examples are Kali linux and Parrot Security OS for pentesting,
+# Tails OS and Whonix for privacy
+# Steam OS for gaming (I will probably do a repo on linux gaming as well)
+# and MANY if not most smart devices use Debian as their base.
+# Some interesting examples of Debian include ARMbian and Mobian, for ARM and mobile platforms respectively.
+
+
 # using apt
 # install without being asked
 sudo apt -y install package_name

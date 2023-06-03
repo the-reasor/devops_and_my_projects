@@ -125,18 +125,36 @@ lsblk
 # FAT32 has a limit of 8TB for partitions and file size limit of 4GB
 
 # Assuming the partition name is sdb1
-# Why is it called vfat in this command? No clue. 
+# Why is it called vfat in this command? No clue.
+
+# EDIT: vfat stands for virtual file allocation table and is an extension for FAT that relaxes the rules.
+# You can read more here. https://stackoverflow.com/questions/11928982/what-is-the-difference-between-vfat-and-fat32-file-systems
+# Its really interesting. I recomend it.
+# Its worth noting that because of the MSDOS aliasing cutting the file name into 13 characters and creating new directory entries for each
+# that if you use the max filename length for vFAT you can reach the limit of 512 entries in just 24 full length vFAT file names.
+# (255/13)/512 = 24
+# 255 vfat filename max
+# 13 number of characters per directory entry that vFAT splits file names into.
+# 512 max entries for root partition
+# This seems to be talking about Microsoft specific root partition.
+
 sudo mkfs.vfat /dev/sdb1
 
+#===========exFAT===========
 
 # Another option is exFAT (extended File Allocation Table) which has a theoretical partition size limit of 128 petabyte.
 sudo apt install exfat-utils
 sudo mkfs.exfat /dev/sdb1
 
 
+#===========NTFS============
+
 # If you want to use NTFS (New Technology File System) on linux use these commands to install support for it.
 sudo apt install -y ntfs-3g-dev fuse
 
+# Normally mkfs.ntfs performs "zeroing" as part of the formatting process in order to securely erase all prior data.
+# It takes forever. To skip add the -Q flag for "quick".
+sudo mkfs.ntfs -Q /dev/sdb1
 
 
 /dev/sdb1 /mnt/win ntfs-3g defaults 0 0

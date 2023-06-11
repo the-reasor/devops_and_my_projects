@@ -1,0 +1,25 @@
+Channel bonding:
+  OSI Layer 1
+  Example: A wifi AP combining adjacent channels in a band of frequincies
+  increasing throughput.
+  Channel bonding can also be applied to ethernet and is called NIC bonding.
+  
+Link agregation:
+  OSI Layer 2
+  
+
+
+load ballencing
+  Load balencing works from the modem to your servers
+  and splits the load of incoming requests between many servers so it is shared between them.
+
+failover
+
+
+
+network bonding(?)
+bonded networks must have the same IP on both sides of the connection, 
+so if you have two modems the ip must be the same on the ISP side for both.
+
+To combine the speeds of two or more uplinks this might be the way.
+https://multipath-tcp.org/

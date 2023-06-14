@@ -1,0 +1,66 @@
+# Basice and intermediate ssh usage and bug fixing.
+
+# Normal SSH command looks like this;
+ssh user@server_addr
+
+# But more can be done.
+
+cd ~/.ssh/
+
+# Start by generating a ssh keypair, two of the most popular are rsa and ed25519
+
+# The ed25519 algorythm is more resiliant than rsa but both can be quantum ready.
+ssh-keygen -t ed25519 -f filename_for_key
+
+#OR
+
+# The rsa algorythm can be quantum ready if you make it long enough. 4096 is the length in bytes of the key.
+ssh-keygen -t rsa -b 4096
+
+
+
+# Next we need to copy the public key over to the machine we want to ssh into.
+ssh-copy-id -i ~/.ssh/keyname.pub username@server_addr
+
+# If you get errors about permissions you may need to apply these commands.
+# These commands set the propper permissions to the files in the ~/.ssh directory.
+
+cd ~
+chmod 600 ~/.ssh/*
+chmod 700 ~/.ssh
+chmod 644 ~/.ssh/*.pub
+
+# SSH into your new machine to check that everything is setup.
+# You may have to provide your password for the ssh key if you set one and you may have to log into the server as that user.
+
+ssh username@server_addr
+
+# Now edit the ssh_config file on the server you SSHed into.
+# This file is responsible for telling ssh how to handle connections and attempted connections.
+
+# Create a backup first!
+sudo cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak
+
+# Edit it.
+sudo nano /etc/ssh/sshd_config
+
+
+# Alternatively use my config
+sudo apt install git
+sudo git clone whatever_I_end_up_naming_it
+
+
+# If you are unable to log in without password after editing sshd_config use the second SSH connection you made to apply these changes:
+# Where 'user' is your username you intend to log in as.
+
+chown user:user .ssh
+chown user:user .ssh/authorized_keys
+
+
+# The SSH config file, different from sshd_config, I know I think its stupid too.
+
+# The SSH config file helps by keeping track of all our keys and all the addresses and users those keys corespond to.
+
+
+
+

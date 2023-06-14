@@ -1,3 +1,4 @@
+#### Linux (Linux Is Not UNix = LINUX)
 #To simplify things I have relabled this to deb dists, since I plan on documenting other distrobutions
 # and because Deb/Deb based operating systems have several package management solutions.
 # Most common examples of Deb systems are Debian, Ubuntu, Linux Mint and Raspbian.
@@ -22,4 +23,38 @@ sudo kill -9 process_id
 
 # NOTE: despite this error unattended upgrade is a good feature and helps keep your packages up to date
 # and less vulnerable without you having to actively update the packages yourself.
+
+#using source
+
+
+#using DPKG (dont it is likey to break something)
+
+
+#using appimage
+
+
+#using snap (intrustive and annoying)
+
+
+#using flatpak 
+
+
+# alpine based systems (apk)
+
+
+# arch based systems (pacman)
+
+
+#gentoo based systems (portage)
+
+
+##### UNIX #####
+
+#freeBSD (pkg)
+
+
+##### windows #####
+
+# using chocolatey
+
 

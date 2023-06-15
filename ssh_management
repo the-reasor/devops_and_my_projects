@@ -44,6 +44,47 @@ sudo cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak
 # Edit it.
 sudo nano /etc/ssh/sshd_config
 
+# Find settings by pressing 'CTRL' + 'W' then edit them to look like these
+
+#####change these####
+
+Protocol 2
+# Setting this tells ssh to use the second version of the protocol.
+# Modern installations of openssh use this by default but there is no harm in setting it.
+
+Port 22
+# In some enviroments it may not be possible to change the port.
+# I know that for some cloud hosting solutions this is not possible. Always check to make sure this would work before changing.
+# Always open another ssh session so that you have two shells at the same time so you can change anything that doesnt work.
+# Dont worry, even after applying changes by restarting ssh you remain logged in in all my years of experience.
+# So if you have an issue logging in on a third ssh connection you can change things back in one of the other two.
+# (One for editing the settings, one for backup and one for testing the changes)
+
+LoginGraceTime 2m # This setting determines how long you have to log in if you have "PasswordAuthentication yes" before the server terminates the connection.
+
+ClientAliveInterval 300
+# This setting checks to see if the session is active and if it has not been used in 5 minutes, logs you out.
+# Be careful with this one because I think fail2ban which we will be installing next sees this as a failed login and if you get logged out too many times it may ban your IP.
+
+PermitRootLogin no 
+# Setting this to 'no' prevents users from logging in with administrative rights and means
+# they will have to use 'sudo' or 'su -' or 'su - root' to use elevated privilages. This is important to turn off for several reasons.
+# With this turned off there is less of a risk of someone using a computer with the ssh keys to get admin over your server.
+# With this turned off there is a lower risk of someone Brute Forcing their way to admin. This setting  + "PasswordAuthentication off" complement eachother well.
+
+
+PubkeyAuthentication yes  #Enabling this allows users to log in with the ssh key.
+
+PasswordAuthentication no
+# Disabling password authentication prevents people from logging in as users with the user password,
+# it doesnt have anything to do with the password on the ssh key. Disabling this can help harden your machine against Brute Force attacks.
+
+X11Forwarding no  #This is for stuff like remote viewing and you dont need it
+# if you only have commandline interface (server install), moreover it is a security risk.
+
+#####end changes #####
+
+# Press 'CTRL' + 'S' to save then 'CTRL' + 'X' to exit
 
 # Alternatively use my config
 sudo apt install git
@@ -55,6 +96,11 @@ sudo git clone whatever_I_end_up_naming_it
 
 chown user:user .ssh
 chown user:user .ssh/authorized_keys
+
+# Installing fail2ban!
+# fail2ban is an amazing piece of software that helps to increase control over connections, not just ssh but also vnc and several others.
+
+
 
 
 # The SSH config file, different from sshd_config, I know I think its stupid too.

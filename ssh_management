@@ -100,6 +100,19 @@ chown user:user .ssh/authorized_keys
 # Installing fail2ban!
 # fail2ban is an amazing piece of software that helps to increase control over connections, not just ssh but also vnc and several others.
 
+sudo apt install -y fail2ban sendmail
+# Ideally we would use something like mailx instead of sendmail because it is a full MTA but there seems to be bugs with that.
+# https://stackoverflow.com/questions/69779565/fail2ban-not-sending-emails actually this looks solved and I will update my guide with this once I test it out.
+
+cd /etc/fail2ban
+
+sudo cp jail.conf jail.local
+# Here we copy jail.conf and rename it as jail.local,
+# jail.local is prioritized over jail.conf and we use this to keep the default config clean so we can restore to it
+# but also because updates to the fail2ban package may include alterations to jail.conf which could break our rules and lock us out.
+# If you read the top of the file when editing you will see that it even says not to modify jail.conf there.
+
+sudo nano jail.local
 
 
 

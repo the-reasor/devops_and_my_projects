@@ -1,0 +1,26 @@
+# How to install nvidia drivers on a stuborn debian 11 install
+
+sudo apt install nvidia-driver firmware-misc-nonfree linux-headers-$(uname -r)
+sudo dpkg-reconfigure nvidia-kernel-dkms
+# check if it installed correctly
+
+lsmod | grep nvidia
+lsmod | grep nouveau
+
+#you should see output from the "lsmod | grep nvida" if it worked, although in my experience it wont until you do the following
+
+sudo dpkg --configure -a
+sudo apt dist-upgrade
+sudo apt -f install
+sudo dpkg --configure -a
+
+#reboot
+sudo init 6
+
+#blacklist nouveau drivers
+sudo nano /etc/modprobe.d/blacklist-nouveau.conf
+
+#enter the following lines:
+blacklist nouveau
+options noveau modeset=0
+

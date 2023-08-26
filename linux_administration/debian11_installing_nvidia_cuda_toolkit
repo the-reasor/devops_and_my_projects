@@ -1,0 +1,13 @@
+# To install the cuda-toolkit just go to this page and follow the instructions that are generated
+# after specifying the OS and version you are installing for.
+
+# https://developer.nvidia.com/cuda-downloads?target_os=Linux&target_arch=x86_64&Distribution=Debian&target_version=11&target_type=deb_local
+
+# For me the instructions that were generated are as follows:
+
+wget https://developer.download.nvidia.com/compute/cuda/12.2.1/local_installers/cuda-repo-debian11-12-2-local_12.2.1-535.86.10-1_amd64.deb
+sudo dpkg -i cuda-repo-debian11-12-2-local_12.2.1-535.86.10-1_amd64.deb
+sudo cp /var/cuda-repo-debian11-12-2-local/cuda-*-keyring.gpg /usr/share/keyrings/
+sudo add-apt-repository contrib
+sudo apt-get update
+sudo apt-get -y install cuda

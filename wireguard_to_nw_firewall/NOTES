@@ -4,3 +4,20 @@
 # "Do not use a tunnel address that is a /32 (IPv4) or a /128 (IPv6)"
 # This post details the reasons behind that and what can be done about it.
 https://serverfault.com/questions/1117395/what-does-the-subnet-mask-of-the-tunnel-ip-in-wireguard-do
+
+
+# Useful guides:
+https://thehelpfulidiot.com/create-a-free-public-endpoint-for-self-hosted-services-using-oracle-cloud-and-opnsense
+# Unfortunately this person seems to be bodging things, OCI instances dont actually use UFW, and instead use raw iptables.
+# I learned that the hard way after some issues with ssh not connecting and LOTS of research. Dont use UFW on OCI instances!
+# He also allows everything through OCI's firewall and that bugs the heck out of me so freaking much.
+# I would prefer to leverage the INDUSTRY GRADE firewall that they have freely available to me but hey, maybe its just me.
+
+# The Wirehole guide
+https://github.com/IAmStoxe/wirehole
+# Unfortunately OCI likes to rearange their entire layout and recategorize things without updating their documentation.
+# ..Or leave about five different locations of (maybe) outdated documentations and about a dozen other things that at first appear related but in fact have no relation.
+# My point is terraform doesnt work with OCI anymore. I dont think they even provide some of the keys needed anymore.
+# I tried everything even using the OCI terminal they provide. It was too much hastle to get terraform working again.
+# Dont bother with the automated install linked in the above github, that is the one that uses Terraform. Much easier to just ssh and do it by hand.
+# I forked this guide to my github for convenience.

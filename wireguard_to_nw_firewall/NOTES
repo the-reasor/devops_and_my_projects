@@ -1,0 +1,6 @@
+# In Wireguard the /etc/wireguard/wg0.conf file has a section called "AllowedIPs".
+# In this config file the option to set the netmask is available, however, by default it is set to /32.
+# In the *sense firewall handbooks it states:
+# "Do not use a tunnel address that is a /32 (IPv4) or a /128 (IPv6)"
+# This post details the reasons behind that and what can be done about it.
+https://serverfault.com/questions/1117395/what-does-the-subnet-mask-of-the-tunnel-ip-in-wireguard-do

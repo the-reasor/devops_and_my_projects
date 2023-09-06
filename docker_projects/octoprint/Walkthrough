@@ -1,0 +1,25 @@
+# Since I am covering how to install docker on another guide I will not cover it here.
+
+mkdir octoprint_multicam
+cd octoprint_multicam
+git clone https://github.com/the-reasor/devops/blob/main/docker_projects/octoprint/octoprint_multicam.yml
+
+docker-compose -f octoprint_cam.yml up -d
+
+# You should now see docker fetch and configure the containers, once that is done navigate to the IP of the docker host at port 4000
+# http://your-octoprint-host-IP-here:4000
+# Make sure it is on http, not https.
+# Now follow the instructions on screen to set up octoprint, you may want to set up the default webcam here.
+# http://your-octoprint-host-IP-here:8080/?action=stream
+
+# After that it requires some extra work to enable both webcams in the octoprint UI.
+# All that is needed is to install the multicam plugin for octoprint by going to:
+# Settings > plugins manager > more plugins > multicam > install
+# Then restart octoprint through the WebUI.
+
+# After this configure it through:
+# Settings > multicam
+# click the plus button then fill in the first field of each cam as follows.
+
+# http://your-octoprint-host-IP-here:8080/?action=stream
+# http://your-octoprint-host-IP-here:8090/?action=stream

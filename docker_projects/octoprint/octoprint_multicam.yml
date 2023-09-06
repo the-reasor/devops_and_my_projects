@@ -1,0 +1,32 @@
+version: '2.2'
+
+services:
+  octoprint_reprap:
+    restart: unless-stopped
+    image: octoprint/octoprint
+    ports:
+      - 4000:5000
+    devices:
+      - /dev/ttyACM0
+    volumes:
+     - /root/octoprint/reprap:/home/octoprint
+
+  mjpg-streamer_0:
+    restart: unless-stopped
+    image: thetinkerdad/mjpegstream-docker
+    # This image just takes the raw mjpg-streamer args -- set to 720p,30 fps
+    command: ./mjpg_streamer -o "output_http.so -w ./www" -i "input_uvc.so -r 1280x720 -d /dev/video0 -f 30"
+    devices:
+      - /dev/video0:/dev/video0
+    ports:
+      - 8080:8080
+
+  mjpg-streamer_1:
+    restart: unless-stopped
+    image: thetinkerdad/mjpegstream-docker
+    # This image just takes the raw mjpg-streamer args -- set to 720p,30 fps
+    command: ./mjpg_streamer -o "output_http.so -w ./www" -i "input_uvc.so -r 1280x720 -d /dev/video0 -f 30"
+    devices:
+      - /dev/video2:/dev/video0
+    ports:
+      - 8090:8080

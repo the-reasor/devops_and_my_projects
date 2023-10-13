@@ -26,9 +26,11 @@ ssh-copy-id -i ~/.ssh/keyname.pub username@server_addr
 # These commands set the propper permissions to the files in the ~/.ssh directory.
 
 cd ~
-chmod 600 ~/.ssh/*
-chmod 700 ~/.ssh
-chmod 644 ~/.ssh/*.pub
+chmod -R 600 ~/.ssh/*
+chmod -R 700 ~/.ssh
+chmod -R 644 ~/.ssh/*.pub
+
+# The chmod commands may need to be run as sudo if you get a permissions error.
 
 # SSH into your new machine to check that everything is setup.
 # You may have to provide your password for the ssh key if you set one and you may have to log into the server as that user.

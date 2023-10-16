@@ -1,4 +1,5 @@
 # Since I am covering how to install docker on another guide I will not cover it here.
+https://github.com/the-reasor/devops/blob/main/docker_projects/tips_n_tricks/docker_install_oneliner
 
 mkdir octoprint_multicam
 cd octoprint_multicam

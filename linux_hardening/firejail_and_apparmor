@@ -1,0 +1,4 @@
+#Here I will explain how to install and configure firejail and apparmor on a fresh install of Ubuntu.
+#Doing this will result in a fairly secure system and this is what is implemented in professional tools like Parrot Security OS.
+# I dont think there is a entry on firejail int he parrotsec docs.
+# https://parrotsec.org/docs/configuration/apparmor/

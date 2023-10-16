@@ -2,3 +2,6 @@
 #Doing this will result in a fairly secure system and this is what is implemented in professional tools like Parrot Security OS.
 # I dont think there is a entry on firejail int he parrotsec docs.
 # https://parrotsec.org/docs/configuration/apparmor/
+
+sudo apt install firejail
+sudo firecfg

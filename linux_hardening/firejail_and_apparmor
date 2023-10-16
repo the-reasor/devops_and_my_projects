@@ -3,5 +3,15 @@
 # I dont think there is a entry on firejail int he parrotsec docs.
 # https://parrotsec.org/docs/configuration/apparmor/
 
+# Apparmor has been included in Ubuntu as of 
+
+# To install do a full install of Apparmor
+sudo apt install apparmor-utils apparmor-notify apparmor-profiles apparmor-profiles-extra
+
+sudo systemctl status apparmor
+
+sudo systemctl enable apparmor
+
+#Firejail is comparatively easy.
 sudo apt install firejail
 sudo firecfg

@@ -3,7 +3,7 @@
 # I dont think there is a entry on firejail int he parrotsec docs.
 # https://parrotsec.org/docs/configuration/apparmor/
 
-# Apparmor has been included in Ubuntu as of 
+# Apparmor has been included in Ubuntu as of Ubuntu 20.04 but is not enabled and for additional profiles more work is needed.
 
 # To install do a full install of Apparmor
 sudo apt install apparmor-utils apparmor-notify apparmor-profiles apparmor-profiles-extra

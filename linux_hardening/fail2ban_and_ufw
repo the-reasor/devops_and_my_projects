@@ -1,0 +1,12 @@
+# Here I will explain how to install and do basic configuration of fail2ban and ufw.
+
+sudo apt install fail2ban ufw
+
+sudo ufw allow ssh
+sudo ufw enable
+
+# It will ask you if you want to proceed say yes.
+sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
+sudo nano /etc/fail2ban/jail.local
+
+# Make these changes.

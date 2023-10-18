@@ -10,3 +10,7 @@ sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
 sudo nano /etc/fail2ban/jail.local
 
 # Make these changes.
+
+
+# More info and depth on sshd and fail2ban included in:
+# https://github.com/the-reasor/devops/blob/main/linux_administration/ssh_management

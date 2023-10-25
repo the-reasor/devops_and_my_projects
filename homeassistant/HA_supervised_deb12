@@ -63,6 +63,12 @@ apt install docker-ce network-manager jq systemd-journal-remote systemd-resolved
 # If you have issues with apt not reaching debian servers to pull packages you may be able to fix it with my guide, located here:
 # https://github.com/the-reasor/devops/blob/main/troubleshooting/debian/network_not_working
 
+# Ok now try it again now that you have followed that guide and rebooted.
+
+sudo -i
+cd /usr/local/src
+dpkg -i homeassistant-supervised.deb
+
 
 
 

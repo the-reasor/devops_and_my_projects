@@ -1,3 +1,10 @@
 # If you cannot install addons and are given this error:
 # 'AddonManager.install' blocked from execution, system is not healthy - privileged
 # This is how to fix it.
+
+# First check the error and the guide given by them “Settings > System > Repairs > kebab (3 dots) > System Information”
+# It should provide a link if you click "Learn more" and that should give you information about fixing the problem.
+
+# For me it said "home assistant does not have privileged access to the docker runtime. Use the link to learn more and how to fix this."
+# Unfortunately it didnt tell me anything about how to fix it so I had to find my own solution.
+sudo systemctl restart hassio-supervisor.service

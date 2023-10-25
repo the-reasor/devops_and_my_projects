@@ -20,3 +20,5 @@ DHCP=ipv4
 MulticastDNS=yes
 
 #press ctrl+s then ctrl+x
+#now reboot
+sudo shutdown -r now

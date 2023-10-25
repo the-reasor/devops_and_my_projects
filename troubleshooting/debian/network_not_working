@@ -1,5 +1,5 @@
-#Sometimes debian will fail to configure the network durring an install from the network installer image, and maybe others.
-#Here are some common things to check and fix.
+# Installing network-manager on debian can break networking.
+# Here are some common things to check and fix.
 
 cd /etc/systemd/network
 ls

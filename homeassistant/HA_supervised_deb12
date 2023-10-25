@@ -1,0 +1,8 @@
+# Here I will detail how to install Home Assistant (HA) on Debian12 in supervised mode.
+# The reasons for doing this are that it allows me access to the host system and allows use of docker while still retaining the ability to use HA plugins.
+# Additionally I will make another guide on how to install HACS (Home Assistant Community Store)
+
+# First step is to install debian 12. I would reccomend using the live image rather than the network installer,
+# because I have had issues with the network installer not adding a few configuration files.
+# If you do use the network installer and have issues with apt not reaching debian servers to pull packages you may be able to fix it with my guide, located here:
+# 

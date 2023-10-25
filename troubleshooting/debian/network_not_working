@@ -1,0 +1,22 @@
+#Sometimes debian will fail to configure the network durring an install from the network installer image, and maybe others.
+#Here are some common things to check and fix.
+
+cd /etc/systemd/network
+ls
+
+# In a healthy install this should list a few files, each named after an network interface on your computer, usually something like:
+# 10-lan.network (or something similar)
+
+# If no files exist in that directory you can create a basic network configuration for LAN by making a file named 10-lan.network and entering this config.
+
+nano /etc/systemd/network/10-lan.network
+#enter the following
+
+[Match]
+Name=eno1 #Put your interface here
+
+[Network]
+DHCP=ipv4
+MulticastDNS=yes
+
+#press ctrl+s then ctrl+x

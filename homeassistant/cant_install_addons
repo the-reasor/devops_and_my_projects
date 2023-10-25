@@ -1,0 +1,3 @@
+# If you cannot install addons and are given this error:
+# 'AddonManager.install' blocked from execution, system is not healthy - privileged
+# This is how to fix it.

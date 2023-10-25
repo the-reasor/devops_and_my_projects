@@ -2,7 +2,70 @@
 # The reasons for doing this are that it allows me access to the host system and allows use of docker while still retaining the ability to use HA plugins.
 # Additionally I will make another guide on how to install HACS (Home Assistant Community Store)
 
-# First step is to install debian 12. I would reccomend using the live image rather than the network installer,
-# because I have had issues with the network installer not adding a few configuration files.
-# If you do use the network installer and have issues with apt not reaching debian servers to pull packages you may be able to fix it with my guide, located here:
-# 
+# First step is to install debian 12. I would reccomend using the live image rather than the network installer.
+
+
+# Enough preface, lets start things off. 
+# Assuming you have successfully installed Debian 12 run these commands
+
+sudo -i
+
+apt update && sudo apt upgrade -y && sudo apt autoremove -y
+
+apt --fix-broken install
+
+apt install apparmor jq wget curl udisks2 libglib2.0-bin network-manager dbus lsb-release systemd-journal-remote systemd-resolved -y
+
+curl -fsSL get.docker.com | sh
+
+# This will install Docker and the dependencies for the OS Agent and the Supervised installer.
+# Next we need to install the OS Agent for the correct archetecture. I am using a 64 bit OS so I will use the os-agent_1.6.0_linux_x86_64.deb
+
+# Change directories to src and download the OS Agent deb file.
+cd /usr/local/src
+wget https://github.com/home-assistant/os-agent/releases/download/1.6.0/os-agent_1.6.0_linux_x86_64.deb
+
+# Now install it with dpkg -i
+dpkg -i os-agent_1.6.0_linux_x86_64.deb
+
+# If you have issues you may have to install udisks2
+apt install udisks2 -y
+
+# If that fails run this:
+apt --fix-broken install
+
+# After that udisks2 should have been installed automatically while it was fixing broken installs.
+# You can check just to be sure.
+apt install udisks2 -y
+
+# That should return 0 new installed in the install report.
+
+# Next we install HA Supervised.
+
+wget https://github.com/home-assistant/supervised-installer/releases/latest/download/homeassistant-supervised.deb
+
+dpkg -i homeassistant-supervised.deb
+
+
+# This might fail with certain packages not installed. Lets install them with the following and try again.
+# The install script for Docker may have also failed so lets run that again:
+
+curl -fsSL get.docker.com | sh
+
+# You may need to fix broken again then try the script again
+
+apt --fix-broken install
+curl -fsSL get.docker.com | sh
+
+apt install docker-ce network-manager jq systemd-journal-remote systemd-resolved
+
+# And of course the dependencies for HA break networking too so lets spend our precious time fixing that as well.
+# If you have issues with apt not reaching debian servers to pull packages you may be able to fix it with my guide, located here:
+# https://github.com/the-reasor/devops/blob/main/troubleshooting/debian/network_not_working
+
+
+
+
+
+
+

@@ -1,0 +1,11 @@
+# It is recomended to use the ssh addon for HA to install this. Why? No freaking clue but it broke when I tried to use normal ssh last time.
+
+# Settings > Addons > addon store > search 'ssh' > click the top one > install 
+# NOTE: it should bring you to a page with the OpenBSD pufferfish behind the "OpenSSH" text. If not then its the wrong addon.
+
+# Now enable all the slider toggles and then navigate to the terminal and enter this:
+
+wget -O - https://raw.githubusercontent.com/hacs/get/main/get | bash -
+
+# Now reboot. 
+

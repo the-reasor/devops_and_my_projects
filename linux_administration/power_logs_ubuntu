@@ -1,0 +1,4 @@
+# Ubuntu uses journalctl so the logs you might expect to find in other files are all consolidated and fetched by journalctl.
+# Use this command to fetch logs and print only the restart and power related info. Useful for determining random shut downs.
+journalctl | grep -iv ': starting\|kernel: .*: Power Button\|watching system buttons\|Stopped Cleaning Up\|Started Crash recovery kernel' \
+  | grep -iw 'recover[a-z]*\|power[a-z]*\|shut[a-z ]*down\|rsyslogd\|ups'

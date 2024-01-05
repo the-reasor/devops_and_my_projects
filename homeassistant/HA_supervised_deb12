@@ -14,7 +14,12 @@ apt update && sudo apt upgrade -y && sudo apt autoremove -y
 
 apt --fix-broken install
 
-#ALERT!!!! If networking breaks its because of systemd-resolved. It switches networking to IPv6. Im working on a fix.
+# ALERT!!!! If networking breaks its because of systemd-resolved. It switches networking to IPv6. Im working on a fix.
+# This link might be of use, I unplugged mine in the middle of installing systemd-resolved out of pure fury and somehow that made the install go correctly
+# after I ran:
+# sudo dpkg --configure -a
+# Here is the link:
+# https://unix.stackexchange.com/questions/442598/how-to-configure-systemd-resolved-and-systemd-networkd-to-use-local-dns-server-f
 
 apt install apparmor jq wget curl udisks2 libglib2.0-bin network-manager dbus lsb-release systemd-journal-remote systemd-resolved -y
 

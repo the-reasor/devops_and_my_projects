@@ -1,0 +1,26 @@
+# Fortune was broken on debian 12 and only ever put out qoutes in italian so here is what I did to fix it.
+
+# Remove the packages
+rm -rf /usr/share/games/fortunes/
+sudo apt purge "fortune"
+sudo apt remove fortunes
+sudo apt remove fortune-mod
+
+# Reinstall
+sudo apt install fortune
+
+# Test that it installed
+fortune
+
+# It needs a list of fortunes
+sudo apt install fortunes
+
+# Lets make things colorful
+sudo apt install lolcat
+
+
+fortune -o | cowsay -f dragon | lolcat
+
+# That was fun, lets make it happen every time we log in.
+
+sudo nano /etc/bash.bashrc

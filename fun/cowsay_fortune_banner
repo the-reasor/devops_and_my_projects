@@ -19,8 +19,24 @@ sudo apt install fortunes
 sudo apt install lolcat
 
 
-fortune -o | cowsay -f dragon | lolcat
+fortune | cowsay -f dragon | lolcat
 
-# That was fun, lets make it happen every time we log in.
+# That was fun, lets make it happen every time anyone logs in, or if you want it just for yourself scroll to the next section.
 
+# The etc/bash.bashrc is for all users on the system.
 sudo nano /etc/bash.bashrc
+
+# Add the folowing to the very end of the file
+fortune | cowsay -f dragon | lolcat
+
+# Now save and exit, ctrl+s then ctrl+x
+
+#==============================================
+
+# If you want the greeter just for you then edit the folowing file:
+sudo nano ~/.bashrc
+
+# Add the folowing to the very end of the file
+fortune | cowsay -f dragon | lolcat
+
+# Now save and exit, ctrl+s then ctrl+x

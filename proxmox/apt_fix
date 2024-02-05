@@ -1,0 +1,64 @@
+# By default the sources.list and gpg keys are incorrect for unpaid versions and must be fixed.
+
+# This guide provides information about correcting this issue for Proxmox version 8 and up.
+# This version is current as up the time of me writing this.
+
+# Should the version of the base system (debian) change please follow the details provided here to accomodate those changes.
+
+# This guide assumes you know how to use terminal text editors such as "nano" or "vim".
+
+
+# Find the version of debian the system is based on:
+cat /etc/os-release
+
+# It should look like:
+#  PRETTY_NAME="Debian GNU/Linux 12 (bookworm)"  <<<<<
+#  NAME="Debian GNU/Linux"
+#  VERSION_ID="12"
+#  VERSION="12 (bookworm)" <<<<<
+#  VERSION_CODENAME=bookworm <<<<<
+#  ID=debian
+#  HOME_URL="https://www.debian.org/"
+#  SUPPORT_URL="https://www.debian.org/support"
+#  BUG_REPORT_URL="https://bugs.debian.org/
+
+# I have noted the lines containing the debian version name by appending "<<<<<" after them.
+# Please take note of this it will be needed later several times.
+
+# Now we need to edit the files inside the "/etc/apt/sources.list.d/" direcory.
+
+cd /etc/apt/sources.list.d/
+ls
+
+# The files should be: ceph.list  pve-enterprise.list  pve-install-repo.list  pve-no-subscription.list
+# The only files that should contain an actionable list (not commented out) are "ceph.list" and "pve-install-repo.list".
+
+
+# Replace the text inside ceph.list with the following:
+deb http://download.proxmox.com/debian/ceph-quincy bookworm no-subscription
+
+
+# Replace the text inside pve-install-repo.list with the following:
+deb http://download.proxmox.com/debian/pve bookworm pve-no-subscription
+
+
+
+# Rewrite the following lines to reflect whatever version name your version is. For instance:
+# https://enterprise.proxmox.com/debian/proxmox-release-(version name)
+
+# Now for proxmox version 8.x use these commands
+rm -r /etc/apt/trusted.gpg.d/proxmox-release-bullseye.gpg
+wget https://enterprise.proxmox.com/debian/proxmox-release-bookworm.gpg -O /etc/apt/trusted.gpg.d/proxmox-release-bookworm.gpg
+
+
+# Now comment out the lines in each of the other files by adding a "#" before each.
+# These are the files: pve-enterprise.list    pve-no-subscription.list
+
+# Now update the system:
+apt update
+
+# You may still get warnings but it should not prevent it from updating.
+
+# Now upgrade outdated packages
+
+apt upgrade -y

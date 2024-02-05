@@ -1,0 +1,7 @@
+# The first thing I noticed after installing a fresh proxmox image was that it had no ability to reach the internet.
+# It turns out the issue was that the dns server was pointing to the machine itself instead of to my dns server on my firewall.
+# Lucky its an easy fix!
+
+#Just go to the top left and click the item directly under the "Datacenter" drop down named the same as the name you gave your machine durring install.
+
+# Then go to the next pannel and click the gear icon labeled "system" and then click "DNS" and point it at your DNS server of choice.

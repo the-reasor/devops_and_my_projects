@@ -1,0 +1,7 @@
+#getting an epson printer working with ubuntu.
+
+sudo apt install printer-driver-escpr
+sudo apt install lsb
+sudo apt install ipp-usb
+
+#plug in the printer cable usb and print. It works.

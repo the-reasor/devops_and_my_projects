@@ -1,0 +1,4 @@
+# If ls -l /dev/serial/by-id/ does not work it may be because debian dropped the udev rule for it.
+
+# For now this is just notes and I am still testing.
+https://ubuntu-mate.community/t/ls-cannot-access-dev-serial-by-id-no-such-file-or-directory/26867
